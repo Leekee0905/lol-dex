@@ -1,5 +1,5 @@
 import ThumbnailList from "@/components/home/ThumbnailList";
-import { getThumbnailChampionList, getLatestVersion } from "@/utils/serverApi";
+import { getThumbnailChampionList, getLatestVersion } from "@/utils/ddragonApi";
 import {
   dehydrate,
   HydrationBoundary,
@@ -11,12 +11,7 @@ const Home = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["version"],
-    queryFn: () => getLatestVersion(),
-  });
-
-  await queryClient.prefetchQuery({
-    queryKey: ["randomChampions"],
+    queryKey: ["homeThumbnail"],
     queryFn: () => getThumbnailChampionList(data),
   });
 
