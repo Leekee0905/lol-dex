@@ -3,6 +3,12 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import { Noto_Sans_KR } from "next/font/google";
 import Providers from "@/providers/RQProvider";
+import { getLatestVersion } from "@/utils/ddragonApi";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: "League Of Legends Dex",
@@ -15,17 +21,25 @@ const noto_kr = Noto_Sans_KR({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["version"],
+    queryFn: () => getLatestVersion(),
+  });
   return (
     <html lang="ko" className={`${noto_kr.className} relative`}>
       <body className="py-[100px] h-screen">
         <Providers>
-          <Header />
-          <main className="container mx-auto mt-10 h-full">{children}</main>
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <Header />
+            <main className="container mx-auto mt-10 h-full">{children}</main>
+          </HydrationBoundary>
         </Providers>
       </body>
     </html>

@@ -1,4 +1,4 @@
-import { getLatestVersion } from "@/utils/serverApi";
+import { getLatestVersion } from "@/utils/ddragonApi";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetVersionQuery = () => {

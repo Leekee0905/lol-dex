@@ -1,5 +1,5 @@
 "use client";
-import { getThumbnailChampionList } from "@/utils/serverApi";
+import { getThumbnailChampionList } from "@/utils/ddragonApi";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const ThumbnailList = () => {
   const version: string = queryClient.getQueryData(["version"])!;
 
   const { data: thumbnailList, isLoading } = useQuery({
-    queryKey: ["randomChampions"],
+    queryKey: ["homeThumbnail"],
     queryFn: () => getThumbnailChampionList(version),
     enabled: !!version,
   });
@@ -31,6 +31,7 @@ const ThumbnailList = () => {
     (e) =>
       `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${e.id}_0.jpg`
   );
+  console.log(thumbnailList);
   return (
     <>
       {championsImageLinks?.map((element: string, index: number) => (
@@ -45,7 +46,7 @@ const ThumbnailList = () => {
               height={300}
               alt="random-champion"
             />
-            <h2 className="mt-5">{Object.values(linkListObject)[index]}</h2>
+            <h2 className="mt-">{Object.values(linkListObject)[index]}</h2>
           </Link>
         </li>
       ))}
