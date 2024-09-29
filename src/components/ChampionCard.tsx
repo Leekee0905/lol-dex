@@ -1,18 +1,11 @@
 "use client";
 
-import { useGetChampionDetailQuery } from "@/hooks/queries/useGetChampionDetailQuery";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import Image from "next/image";
 import { useQueryClient } from "@tanstack/react-query";
+import { ChampionType } from "@/types/championType";
 
-const ChampionCard = ({ data }) => {
-  // const { data: detail } = useGetChampionDetailQuery(id);
+const ChampionCard = ({ data }: { data: ChampionType }) => {
   const queryClient = useQueryClient();
   const version: string = queryClient.getQueryData(["version"])!;
   return (

@@ -6,9 +6,7 @@ export const getLatestVersion = async () => {
 };
 
 export const getThumbnailChampionList = async (version: string) => {
-  const response = await riotApi.get(
-    `/cdn/${version}/data/ko_KR/champion.json`
-  );
+  const response = await riotApi.get(`/cdn/${version}/data/ko_KR/champion.json`);
   const sliceChamipons = (count: number) => {
     const dataKeys = Object.keys(response.data.data).slice(0, count);
     const result = [];
@@ -21,17 +19,12 @@ export const getThumbnailChampionList = async (version: string) => {
 };
 
 export const getChampionsList = async (version: string) => {
-  const response = await riotApi.get(
-    `/cdn/${version}/data/ko_KR/champion.json`
-  );
+  const response = await riotApi.get(`/cdn/${version}/data/ko_KR/champion.json`);
   console.log(version);
   return response.data;
 };
 
 export const getChampionDetail = async (version: string, id: number) => {
-  const response = await riotApi.get(
-    `/cdn/${version}/data/ko_KR/champion/${id}.json`
-  );
-  console.log(response.data);
+  const response = await riotApi.get(`/cdn/${version}/data/ko_KR/champion/${id}.json`);
   return response.data;
 };
