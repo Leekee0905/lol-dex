@@ -8,6 +8,7 @@ export const useGetChampionListQuery = () => {
     queryKey: ["championList"],
     queryFn: () => getChampionsList(version),
     enabled: !!version,
+    staleTime: 3000,
   });
 };
 

@@ -1,7 +1,7 @@
 "use client";
 import ChampionCard from "@/components/ChampionCard";
 import useGetRotationQuery from "@/hooks/queries/useGetRotationQuery";
-import { useQueryClient } from "@tanstack/react-query";
+import { ChampionType } from "@/types/championType";
 
 const RotationPage = () => {
   const { data: rotationChampions, isLoading } = useGetRotationQuery();
@@ -11,7 +11,7 @@ const RotationPage = () => {
     <div>
       <h1 className="text-[#ff5555] font-bold">챔피언 로테이션</h1>
       <div className="container grid grid-cols-5 gap-5">
-        {rotationChampions.map((champion) => {
+        {rotationChampions.map((champion: ChampionType) => {
           return <ChampionCard key={champion.id} data={champion} />;
         })}
       </div>
