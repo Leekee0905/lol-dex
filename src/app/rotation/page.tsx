@@ -10,7 +10,7 @@ const RotationPage = () => {
   return (
     <div>
       <h1 className="text-[#ff5555] font-bold">챔피언 로테이션</h1>
-      <div className="container grid grid-cols-5 gap-5">
+      <div className="container grid grid-cols-5 gap-5 py-5">
         {rotationChampions.map((champion: ChampionType) => {
           return <ChampionCard key={champion.id} data={champion} />;
         })}
