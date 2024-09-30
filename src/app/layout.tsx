@@ -3,12 +3,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import { Noto_Sans_KR } from "next/font/google";
 import Providers from "@/providers/RQProvider";
-import { getLatestVersion } from "@/utils/ddragonApi";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "League Of Legends Dex",
@@ -26,20 +22,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: ["version"],
-    queryFn: () => getLatestVersion(),
-  });
   return (
-    <html lang="ko" className={`${noto_kr.className} relative`}>
-      <body className="py-[100px] h-screen">
+    <html lang="ko" className={`${noto_kr.className}`}>
+      <body className="py-[100px] min-h-screen">
         <Providers>
-          <HydrationBoundary state={dehydrate(queryClient)}>
-            <Header />
+          <Header />
+          <Suspense fallback={<Loading />}>
             <main className="container mx-auto mt-10 h-full">{children}</main>
-          </HydrationBoundary>
+          </Suspense>
         </Providers>
       </body>
     </html>

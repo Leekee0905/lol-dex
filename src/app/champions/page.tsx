@@ -1,12 +1,12 @@
 import ChampionCard from "@/components/ChampionCard";
 import { ChampionType } from "@/types/championType";
-import { getChampionsList, getLatestVersion } from "@/utils/ddragonApi";
+import { getChampionsList } from "@/utils/serverApi";
 
 export const revalidate = 86400;
+
 const ChampionsPage = async () => {
-  const version = await getLatestVersion();
-  const championList = await getChampionsList(version);
-  const data: ChampionType[] = Object.values(championList.data);
+  const championList = await getChampionsList();
+  const data: ChampionType[] = Object.values(championList);
   return (
     <div>
       <h1 className="text-[#ff5555] font-bold">챔피언 목록</h1>
