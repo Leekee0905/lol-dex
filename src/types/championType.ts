@@ -36,6 +36,18 @@ interface ChampionInfoType {
   magic: number;
   difficulty: number;
 }
+
+export type ChampionListResponseType = {
+  data: ChampionListType;
+  format: string;
+  type: string;
+  version: string;
+};
+
+export type ChampionListType = {
+  [key: string]: ChampionType;
+};
+
 export type ChampionType = {
   blurb: string;
   id: string;
@@ -47,10 +59,10 @@ export type ChampionType = {
   stats: ChampionStatType;
   tags: string[];
   title: number;
-  version: number;
+  version: string;
 };
 
-interface ChampionSkillType {
+export interface ChampionSkillType {
   id: string;
   name: string;
   description: string;
@@ -72,17 +84,20 @@ interface ChampionSkillType {
   maxammo: string;
   range: number[];
   rangeBurn: string;
-  image: {
-    full: string;
-    sprite: string;
-    group: string;
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-  };
+  image: ChampionImageType;
   resource: string;
 }
+
+export type ChampionDetailResponseType = {
+  type: string;
+  format: string;
+  version: string;
+  data: ChampionDetailType;
+};
+
+export type ChampionDetailDataType = {
+  [key: string]: ChampionDetailType;
+};
 
 export interface ChampionDetailType extends ChampionType {
   skins: {
@@ -95,4 +110,10 @@ export interface ChampionDetailType extends ChampionType {
   allytips: string[];
   enemytips: string[];
   spells: ChampionSkillType[];
+  recommended: unknown[];
+  passive: {
+    name: string;
+    description: string;
+    image: ChampionImageType;
+  };
 }
