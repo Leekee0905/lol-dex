@@ -1,6 +1,4 @@
-"use client";
-import { getThumbnailChampionList } from "@/utils/ddragonApi";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { ChampionType } from "@/types/championType";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,28 +8,22 @@ type LinkListType = {
   items: string;
 };
 
-const ThumbnailList = () => {
-  const queryClient = useQueryClient();
-  const version: string = queryClient.getQueryData(["version"])!;
-
-  const { data: thumbnailList, isLoading } = useQuery({
-    queryKey: ["homeThumbnail"],
-    queryFn: () => getThumbnailChampionList(version),
-    enabled: !!version,
-  });
-
+const ThumbnailList = ({
+  thumbnailList,
+}: {
+  thumbnailList: ChampionType[];
+}) => {
   const linkListObject: LinkListType = {
     rotation: "로테이션",
     champions: "챔피언 목록",
     items: "아이템 목록",
   };
-  if (isLoading) return <div>loading..</div>;
 
-  const championsImageLinks = thumbnailList?.map(
+  const championsImageLinks = thumbnailList.map(
     (e) =>
       `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${e.id}_0.jpg`
   );
-  console.log(thumbnailList);
+
   return (
     <>
       {championsImageLinks?.map((element: string, index: number) => (
