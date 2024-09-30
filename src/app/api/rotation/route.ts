@@ -1,18 +1,21 @@
-import { ChampionType } from "@/types/championType";
-import { rotationApi } from "@/utils/apiIntsance";
-import { getChampionsList } from "@/utils/ddragonApi";
+import { ChampionListType } from "@/types/championType";
+import { rotationApi } from "@/utils/clientApi";
+import { getChampionsList } from "@/utils/serverApi";
+
 import { NextResponse } from "next/server";
 
-export const GET = async (request: Request) => {
-  const { searchParams } = new URL(request.url);
-  const version = searchParams.get("version")!;
-  const rotationDataResponse = await rotationApi.get("/");
-  const allChampionsResponse = await getChampionsList(version);
-  const rotationData = rotationDataResponse.data.freeChampionIds;
-  const allChampions: ChampionType[] = Object.values(allChampionsResponse.data);
+export const GET = async () => {
+  const allChampionList: ChampionListType = await getChampionsList();
+  const rotationData: number[] = await rotationApi();
 
-  const championMap = new Map(allChampions.map((champion) => [Number(champion.key), champion]));
-  const rotationChampions = rotationData.map((element: number) => championMap.get(element));
+  const allChampions = Object.values(allChampionList);
+
+  const championMap = new Map(
+    allChampions.map((champion) => [Number(champion.key), champion])
+  );
+  const rotationChampions = rotationData.map((element: number) =>
+    championMap.get(element)
+  );
 
   return NextResponse.json(rotationChampions);
 };
