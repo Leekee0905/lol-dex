@@ -16,7 +16,7 @@ const ChampionDetail = ({
     <div className="text-white flex flex-col gap-3">
       <h1 className="text-[#ff5555] font-bold">{data.name}</h1>
       <Image
-        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${data.image.full}`}
+        src={`${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version}/img/champion/${data.image.full}`}
         width={50}
         height={50}
         alt={data.id || ""}

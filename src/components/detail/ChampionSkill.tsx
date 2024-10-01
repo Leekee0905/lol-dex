@@ -22,7 +22,7 @@ const ChampionSkill = ({
           onClick={() => setSkillInfo(data.passive.description)}
         >
           <Image
-            src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/passive/${data.passive.image.full}`}
+            src={`${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version}/img/passive/${data.passive.image.full}`}
             width={50}
             height={50}
             alt={data.passive.name || ""}
@@ -38,7 +38,7 @@ const ChampionSkill = ({
               onClick={() => setSkillInfo(spell.description)}
             >
               <Image
-                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell.id}.png`}
+                src={`${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version}/img/spell/${spell.id}.png`}
                 width={50}
                 height={50}
                 alt={spell.id}

@@ -21,7 +21,7 @@ const ThumbnailList = ({
 
   const championsImageLinks = thumbnailList.map(
     (e) =>
-      `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${e.id}_0.jpg`
+      `${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/img/champion/splash/${e.id}_0.jpg`
   );
 
   return (

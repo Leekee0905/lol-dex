@@ -27,7 +27,7 @@ const ChampionDetailPage = async ({ params }: { params: ParamsType }) => {
       className="w-full h-full flex flex-col items-center"
       style={{
         backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
-        url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championInfo.id}_0.jpg)`,
+        url(${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/img/champion/splash/${championInfo.id}_0.jpg)`,
         backgroundSize: "cover",
         backgroundPosition: "center top 4em",
         backgroundRepeat: "no-repeat",

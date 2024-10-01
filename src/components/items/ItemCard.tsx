@@ -19,7 +19,7 @@ const ItemCard = ({
     <Card className="flex flex-col items-center justify-center">
       <CardHeader>
         <Image
-          src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${data.image.full}`}
+          src={`${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version}/img/item/${data.image.full}`}
           width={100}
           height={100}
           alt={""}
