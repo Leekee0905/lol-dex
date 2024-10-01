@@ -38,7 +38,7 @@ const ThumbnailList = ({
               height={300}
               alt="random-champion"
             />
-            <h2 className="mt-">{Object.values(linkListObject)[index]}</h2>
+            <h2 className="mt-3">{Object.values(linkListObject)[index]}</h2>
           </Link>
         </li>
       ))}
