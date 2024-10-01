@@ -1,7 +1,6 @@
 import { ChampionListType } from "@/types/championType";
 import { rotationApi } from "@/utils/clientApi";
 import { getChampionsList } from "@/utils/serverApi";
-
 import { NextResponse } from "next/server";
 
 export const GET = async () => {

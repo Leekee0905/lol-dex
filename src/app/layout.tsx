@@ -5,7 +5,8 @@ import { Noto_Sans_KR } from "next/font/google";
 import Providers from "@/providers/RQProvider";
 import { Suspense } from "react";
 import Loading from "./loading";
-
+import { ThemeProvider } from "next-themes";
+import ThemeButton from "@/components/layout/ThemeButton";
 export const metadata: Metadata = {
   title: "League Of Legends Dex",
   description: "리그오브레전드 정보를 볼 수 있는 페이지 입니다.",
@@ -23,13 +24,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${noto_kr.className}`}>
-      <body className="py-[100px] min-h-screen">
+    <html lang="ko" className={`${noto_kr.className}`} suppressHydrationWarning>
+      <body className="pt-[80px] min-h-screen">
         <Providers>
-          <Header />
-          <Suspense fallback={<Loading />}>
-            <main className="container mx-auto mt-10 h-full">{children}</main>
-          </Suspense>
+          <ThemeProvider attribute="class">
+            <Header />
+            <Suspense fallback={<Loading />}>
+              <main className="mx-auto min-h-screen flex flex-col items-center">
+                {children}
+              </main>
+              <ThemeButton />
+            </Suspense>
+          </ThemeProvider>
         </Providers>
       </body>
     </html>

@@ -1,4 +1,4 @@
-interface ChampionStatType {
+type ChampionStatType = {
   armor: number;
   armorperlevel: number;
   attackdamage: number;
@@ -19,9 +19,9 @@ interface ChampionStatType {
   mpregenperlevel: number;
   spellblock: number;
   spellblockperlevel: number;
-}
+};
 
-interface ChampionImageType {
+export type ImageType = {
   full: string;
   sprite: string;
   group: string;
@@ -29,13 +29,13 @@ interface ChampionImageType {
   y: number;
   w: number;
   h: number;
-}
-interface ChampionInfoType {
+};
+type ChampionInfoType = {
   attack: number;
   defense: number;
   magic: number;
   difficulty: number;
-}
+};
 
 export type ChampionListResponseType = {
   data: ChampionListType;
@@ -51,7 +51,7 @@ export type ChampionListType = {
 export type ChampionType = {
   blurb: string;
   id: string;
-  image: ChampionImageType;
+  image: ImageType;
   info: ChampionInfoType;
   key: string;
   name: string;
@@ -62,7 +62,7 @@ export type ChampionType = {
   version: string;
 };
 
-export interface ChampionSkillType {
+export type ChampionSkillType = {
   id: string;
   name: string;
   description: string;
@@ -84,9 +84,9 @@ export interface ChampionSkillType {
   maxammo: string;
   range: number[];
   rangeBurn: string;
-  image: ChampionImageType;
+  image: ImageType;
   resource: string;
-}
+};
 
 export type ChampionDetailResponseType = {
   type: string;
@@ -99,13 +99,15 @@ export type ChampionDetailDataType = {
   [key: string]: ChampionDetailType;
 };
 
+export type ChampionSkinsType = {
+  id: string;
+  num: number;
+  name: string;
+  chromas: boolean;
+};
+
 export interface ChampionDetailType extends ChampionType {
-  skins: {
-    id: string;
-    num: number;
-    name: string;
-    chromas: boolean;
-  }[];
+  skins: ChampionSkinsType[];
   lore: string;
   allytips: string[];
   enemytips: string[];
@@ -114,6 +116,6 @@ export interface ChampionDetailType extends ChampionType {
   passive: {
     name: string;
     description: string;
-    image: ChampionImageType;
+    image: ImageType;
   };
 }

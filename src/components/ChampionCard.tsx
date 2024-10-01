@@ -15,7 +15,7 @@ const ChampionCard = ({ data }: { data: ChampionType }) => {
       <Card className="flex flex-col items-center justify-center">
         <CardHeader>
           <Image
-            src={`https://ddragon.leagueoflegends.com/cdn/${data.version}/img/champion/${data.image.full}`}
+            src={`${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${data.version}/img/champion/${data.image.full}`}
             width={100}
             height={100}
             alt={data.id}
