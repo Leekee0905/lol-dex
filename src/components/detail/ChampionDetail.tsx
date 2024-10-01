@@ -1,75 +1,43 @@
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import {
-  ChampionDetailResponseType,
-  ChampionDetailType,
-  ChampionSkillType,
-} from "@/types/championType";
+import { ChampionDetailType } from "@/types/championType";
+import { LuSwords } from "react-icons/lu";
+import { FaBookOpen } from "react-icons/fa";
+import { FaShield } from "react-icons/fa6";
+import { IoMdStar } from "react-icons/io";
 
-const ChampionDetail = ({ data }: { data: ChampionDetailResponseType }) => {
-  const championInfo: ChampionDetailType = Object.values(data.data)[0];
-  const tagConverter = (desc: string) => {
-    const convertedDesc = desc.replace("<br><br>", "\n");
-    return convertedDesc;
-  };
+const ChampionDetail = ({
+  data,
+  version,
+}: {
+  data: ChampionDetailType;
+  version: string;
+}) => {
   return (
-    <div>
-      <h1 className="text-[#ff5555] font-bold">{championInfo.name}</h1>
-      <p>{championInfo.title}</p>
+    <div className="text-white flex flex-col gap-3">
+      <h1 className="text-[#ff5555] font-bold">{data.name}</h1>
       <Image
-        src={`https://ddragon.leagueoflegends.com/cdn/${data.version}/img/champion/${championInfo.image.full}`}
+        src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${data.image.full}`}
         width={50}
         height={50}
-        alt={championInfo.id || ""}
+        alt={data.id || ""}
       />
-      <p>{championInfo.lore}</p>
-      <h2 className="mt-10">{championInfo.name}의 스킬</h2>
-      <div className="container mt-5">
-        <Card>
-          <CardHeader>
-            <Image
-              src={`https://ddragon.leagueoflegends.com/cdn/${data.version}/img/passive/${championInfo.passive.image.full}`}
-              width={50}
-              height={50}
-              alt={championInfo.passive.name || ""}
-            />
-          </CardHeader>
-          <CardContent className="h-full">
-            <CardTitle>{championInfo.passive.name}</CardTitle>
-            <CardDescription>
-              {tagConverter(championInfo.passive.description)}
-            </CardDescription>
-          </CardContent>
-        </Card>
-        {championInfo.spells.map((element: ChampionSkillType) => {
-          return (
-            <div key={element.id} className="my-5">
-              <Card>
-                <CardHeader>
-                  <Image
-                    src={`https://ddragon.leagueoflegends.com/cdn/${data.version}/img/spell/${element.id}.png`}
-                    width={50}
-                    height={50}
-                    alt={element.id}
-                  />
-                </CardHeader>
+      <p>{data.title}</p>
+      <p>{data.lore}</p>
+      <div className="flex flex-col">
+        <p>스텟</p>
+        <p className="flex items-center">
+          <LuSwords className="mr-1" />: {data.info.attack}
+        </p>
 
-                <CardContent className="h-full">
-                  <CardTitle>{element.name}</CardTitle>
-                  <CardDescription>
-                    {tagConverter(element.description)}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            </div>
-          );
-        })}
+        <p className="flex items-center">
+          <FaShield className="mr-1" />: {data.info.defense}
+        </p>
+        <p className="flex items-center">
+          <FaBookOpen className="mr-1" />: {data.info.magic}
+        </p>
+        <p className="flex items-center">
+          <IoMdStar className="mr-1" />: {data.info.difficulty}
+        </p>
       </div>
     </div>
   );
