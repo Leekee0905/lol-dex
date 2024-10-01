@@ -8,7 +8,7 @@ const ChampionsPage = async () => {
   const championList = await getChampionsList();
   const data: ChampionType[] = Object.values(championList);
   return (
-    <div>
+    <div className="container mt-10">
       <h1 className="text-[#ff5555] font-bold">챔피언 목록</h1>
       <div className="container grid grid-cols-5 gap-5 py-5">
         {data.map((champion: ChampionType) => {
