@@ -22,10 +22,11 @@ const ItemCard = ({
           src={`${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version}/img/item/${data.image.full}`}
           width={100}
           height={100}
-          alt={""}
+          alt={data.name}
+          className="w-full h-auto"
         />
       </CardHeader>
-      <CardTitle>{data.name}</CardTitle>
+      <CardTitle className="text-sm md:text-2xl">{data.name}</CardTitle>
 
       <CardContent>
         <CardDescription>{data.plaintext}</CardDescription>
