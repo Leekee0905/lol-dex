@@ -41,8 +41,8 @@ const ChampionSkins = ({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="text-black" />
-        <CarouselNext className="text-black" />
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
     </div>
   );
