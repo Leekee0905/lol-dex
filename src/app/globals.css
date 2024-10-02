@@ -2,17 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+[data-theme="dark"] {
+  --background: black;
+  --foreground: white;
+}
 
+[dark-theme="light"] {
+  --background: white;
+  --foreground: black;
+}
 @layer base {
   h1 {
     @apply text-2xl;
@@ -22,5 +25,12 @@
   }
   h3 {
     @apply text-lg;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

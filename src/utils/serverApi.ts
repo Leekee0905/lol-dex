@@ -1,21 +1,81 @@
-import { riotServerApi } from "./apiIntsance";
+import {
+  ChampionDetailResponseType,
+  ChampionListResponseType,
+} from "@/types/championType";
 
-export const getLatestVersion = async () => {
-  const response = await riotServerApi.get("/api/versions.json");
-  return response.data[0];
+export const getChampionsList = async () => {
+  const versionResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_RIOT_API_URL}/api/versions.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-Riot-Token": process.env.NEXT_PUBLIC_RIOT_API_KEY || "",
+      },
+    }
+  );
+  const version: string[] = await versionResponse.json();
+
+  const championListResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version[0]}/data/ko_KR/champion.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-Riot-Token": process.env.NEXT_PUBLIC_RIOT_API_KEY || "",
+      },
+    }
+  );
+  const championList: ChampionListResponseType =
+    await championListResponse.json();
+  return championList.data;
 };
 
-export const getThumbnailChampionList = async (version: string) => {
-  const response = await riotServerApi.get(
-    `/cdn/${version}/data/ko_KR/champion.json`
-  );
-  const sliceChamipons = (count: number) => {
-    const dataKeys = Object.keys(response.data.data).slice(0, count);
-    const result = [];
-    for (let i = 0; i < count; i++) {
-      result.push(response.data.data[dataKeys[i]]);
+export const getChampionDetail = async (name: string) => {
+  const versionResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_RIOT_API_URL}/api/versions.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-Riot-Token": process.env.NEXT_PUBLIC_RIOT_API_KEY || "",
+      },
     }
-    return result;
-  };
-  return sliceChamipons(3);
+  );
+  const version: string[] = await versionResponse.json();
+  const championDetailResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version[0]}/data/ko_KR/champion/${name}.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-Riot-Token": process.env.NEXT_PUBLIC_RIOT_API_KEY || "",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const championDetail: ChampionDetailResponseType =
+    await championDetailResponse.json();
+  return championDetail;
+};
+
+export const getItems = async () => {
+  const versionResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_RIOT_API_URL}/api/versions.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-Riot-Token": process.env.NEXT_PUBLIC_RIOT_API_KEY || "",
+      },
+    }
+  );
+  const version: string[] = await versionResponse.json();
+  const itemsResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${version[0]}/data/ko_KR/item.json`,
+    {
+      method: "GET",
+      headers: {
+        "X-Riot-Token": process.env.NEXT_PUBLIC_RIOT_API_KEY || "",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const items = await itemsResponse.json();
+  return items;
 };
