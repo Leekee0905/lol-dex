@@ -25,7 +25,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${noto_kr.className}`} suppressHydrationWarning>
-      <body className="pt-[80px] min-h-screen">
+      <body className="min-h-screen">
         <Providers>
           <ThemeProvider attribute="class">
             <Header />
