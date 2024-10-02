@@ -17,9 +17,9 @@ const ThemeButton = () => {
   }
 
   const handleThemeButton = () => {
-    if (theme === "dark") setTheme("light");
-    if (theme === "light") setTheme("dark");
+    setTheme(theme === "dark" ? "light" : "dark");
   };
+
   return (
     <button
       className="fixed bottom-5 right-5 w-[50px] h-[50px] rounded-full flex justify-center items-center border-solid border-2"
