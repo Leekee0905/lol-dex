@@ -12,13 +12,14 @@ import Link from "next/link";
 const ChampionCard = ({ data }: { data: ChampionType }) => {
   return (
     <Link href={`/champions/${data.id}`}>
-      <Card className="flex flex-col items-center justify-center">
+      <Card className="flex flex-col items-center justify-center hover:text-[#ff5555]">
         <CardHeader>
           <Image
             src={`${process.env.NEXT_PUBLIC_RIOT_API_URL}/cdn/${data.version}/img/champion/${data.image.full}`}
             width={100}
             height={100}
             alt={data.id}
+            className="hover:shadow-red-100 hover:shadow-2xl"
           />
         </CardHeader>
         <CardTitle>{data.name}</CardTitle>

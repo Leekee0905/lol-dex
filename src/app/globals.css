@@ -7,15 +7,15 @@
     text-wrap: balance;
   }
 }
-/* [data-theme="dark"] {
-  --background: black;
-  --foreground: white;
+body {
+  cursor: url("/assets/normal.cur"), auto;
+}
+a,
+.skill,
+button {
+  cursor: url("/assets/link.cur"), pointer;
 }
 
-[dark-theme="light"] {
-  --background: white;
-  --foreground: black;
-} */
 @layer base {
   h1 {
     @apply text-2xl;
