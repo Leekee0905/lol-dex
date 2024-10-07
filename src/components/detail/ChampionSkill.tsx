@@ -18,7 +18,7 @@ const ChampionSkill = ({
       <h2 className="mt-5">{data.name}의 스킬</h2>
       <div className="container flex gap-5 mt-5">
         <div
-          className="flex flex-col items-center cursor-pointer"
+          className="flex flex-col items-center hover:text-[#ff5555] skill"
           onClick={() => setSkillInfo(data.passive.description)}
         >
           <Image
@@ -33,7 +33,7 @@ const ChampionSkill = ({
         {data.spells.map((spell, index: number) => {
           return (
             <div
-              className="flex flex-col items-center cursor-pointer"
+              className="skill flex flex-col items-center cursor-pointer hover:text-[#ff5555]"
               key={spell.id}
               onClick={() => setSkillInfo(spell.description)}
             >

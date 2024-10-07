@@ -30,7 +30,7 @@ const ThumbnailList = ({
         <li key={element}>
           <Link
             href={Object.keys(linkListObject)[index]}
-            className="flex flex-col justify-center items-center"
+            className="flex flex-col justify-center items-center hover:text-[#ff5555]"
           >
             <Image
               src={element}
