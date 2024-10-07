@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📗 롤 대백과사전
 
-## Getting Started
+Riot API를 활용하여 리그오브레전드 정보를 보여주는 페이지입니다.
 
-First, run the development server:
+## 🔗 배포 링크
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+https://lol-dex.vercel.app
+
+## 📚 프로젝트 구조
+
+<details>
+<summary>폴더 구조</summary>
+
+```
+lol-dex
+├─ .gitignore
+├─ components.json
+├─ next.config.mjs
+├─ package.json
+├─ postcss.config.mjs
+├─ public
+│  └─ assets
+│     ├─ link.cur
+│     ├─ logo.png
+│     └─ normal.cur
+├─ README.md
+├─ src
+│  ├─ app
+│  │  ├─ api
+│  │  │  └─ rotation
+│  │  │     └─ route.ts
+│  │  ├─ champions
+│  │  │  ├─ page.tsx
+│  │  │  └─ [name]
+│  │  │     ├─ loading.tsx
+│  │  │     └─ page.tsx
+│  │  ├─ error.tsx
+│  │  ├─ favicon.ico
+│  │  ├─ global-error.tsx
+│  │  ├─ globals.css
+│  │  ├─ items
+│  │  │  └─ page.tsx
+│  │  ├─ layout.tsx
+│  │  ├─ loading.tsx
+│  │  ├─ page.tsx
+│  │  └─ rotation
+│  │     └─ page.tsx
+│  ├─ components
+│  │  ├─ ChampionCard.tsx
+│  │  ├─ detail
+│  │  │  ├─ ChampionDetail.tsx
+│  │  │  ├─ ChampionSkill.tsx
+│  │  │  └─ ChampionSkins.tsx
+│  │  ├─ home
+│  │  │  └─ ThumbnailList.tsx
+│  │  ├─ items
+│  │  │  └─ ItemCard.tsx
+│  │  ├─ layout
+│  │  │  ├─ Header.tsx
+│  │  │  ├─ HiddenHeaderList.tsx
+│  │  │  └─ ThemeButton.tsx
+│  │  └─ ui
+│  │     ├─ button.tsx
+│  │     ├─ card.tsx
+│  │     └─ carousel.tsx
+│  ├─ hooks
+│  │  └─ queries
+│  │     └─ useGetRotationQuery.ts
+│  ├─ lib
+│  │  └─ utils.ts
+│  ├─ providers
+│  │  └─ RQProvider.tsx
+│  ├─ types
+│  │  ├─ championType.ts
+│  │  ├─ itemType.ts
+│  │  └─ rotationType.ts
+│  └─ utils
+│     ├─ clientApi.ts
+│     └─ serverApi.ts
+├─ tailwind.config.ts
+├─ tsconfig.json
+└─ yarn.lock
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+</details>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 개발 환경
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat-square&logo=Tailwind CSS&logoColor=white"/>
+<br/>
+<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=Vercel&logoColor=white"/>
+<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white"/>
 
-## Learn More
+## 프로젝트 기간
 
-To learn more about Next.js, take a look at the following resources:
+2024.09.25 ~ 24.10.07
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 주요 기능
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 홈페이지
 
-## Deploy on Vercel
+### 로테이션
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 챔피언 목록
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 챔피언 상세
+
+### 아이템 목록
+
+### 다크모드
+
+### 반응형
+
+### 로딩 페이지
+
+### 에러 페이지
+
+## 트러블 슈팅
+
+[next-themes 라이브러리를 통한 다크모드 구현 중 에러 발생](https://velog.io/@leekee0905/TIL-%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C-%EA%B5%AC%ED%98%84-%EC%A4%91-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85)
